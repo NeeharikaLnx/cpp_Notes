@@ -1,1 +1,373 @@
+C++ Basics
+STL : Standard Library
+
+Tools used : Integrated Development Environment(IDEs) : VS studio , Xcode , CLion(beginner version)
+
+First C++ Program:
+Control Flow
+cpp
+Copy
+Edit
+// if: Conditional execution
+if (x > 0) cout << "Positive";
+
+// else: Executes when 'if' fails
+if (x > 0) cout << "Positive";
+else cout << "Non-positive";
+
+// switch/case/default: Multi-branch selection
+switch (n) {
+  case 1: cout << "One"; break;
+  case 2: cout << "Two"; break;
+  default: cout << "Other";
+}
+
+// for: Loop with init, condition, increment
+for (int i = 0; i < 5; i++) cout << i << " ";
+
+// while: Loop until condition is false
+while (x > 0) x--;
+
+// do: Executes at least once
+do { x--; } while (x > 0);
+
+// break: Exit loop/switch
+for (int i = 0; i < 5; i++) if (i == 3) break;
+
+// continue: Skip to next iteration
+for (int i = 0; i < 5; i++) {
+  if (i == 2) continue;
+  cout << i;
+}
+
+// goto: Jump to label (not recommended)
+goto start;
+start: cout << "Looping";
+
+// return: Exit function with value
+int sum(int a, int b) { return a + b; }
+Data Types & Modifiers
+cpp
+Copy
+Edit
+// Basic types
+int a = 10;
+float b = 3.14;
+double d = 2.718;
+char c = 'A';
+bool flag = true;
+
+// void: No return type
+void greet() { cout << "Hi"; }
+
+// Modifiers
+unsigned int age = 25;
+long bigNum = 100000L;
+
+// Wide/Unicode characters
+wchar_t w = L'Ω';
+char16_t ch16 = u'あ';
+char32_t ch32 = U'𐍈';
+
+// nullptr: Null pointer literal
+int* p = nullptr;
+Storage & Memory
+cpp
+Copy
+Edit
+// static: Value persists across calls
+static int counter = 0;
+
+// extern: Declared elsewhere
+extern int globalVar;
+
+// mutable: Modifiable in const object
+struct S { mutable int x; };
+
+// thread_local: One per thread
+thread_local int counter = 0;
+
+// new/delete: Dynamic memory
+int* ptr = new int(5);
+delete ptr;
+
+// alignas/alignof: Alignment control
+alignas(16) int y;
+cout << alignof(double);
+
+// sizeof: Size in bytes
+cout << sizeof(int);
+Object-Oriented
+cpp
+Copy
+Edit
+// class/struct
+class MyClass { public: int x; };
+struct MyStruct { int y; };
+
+// union
+union U { int i; float f; };
+
+// enum
+enum Color { Red, Green, Blue };
+
+// Access specifiers
+class C { private: int x; public: int y; };
+
+// virtual: For polymorphism
+class Base { public: virtual void show() {} };
+
+// override: Ensure overriding
+class Derived : public Base {
+  void show() override {}
+};
+
+// final: Prevent inheritance/override
+class FinalClass final {};
+
+// explicit: Prevent implicit conversion
+explicit MyClass(int x) {}
+
+// friend: Give access to private members
+friend void helper(MyClass&);
+
+// inline: Suggest inline expansion
+inline int add(int a, int b) { return a + b; }
+
+// this: Pointer to current object
+this->x = 5;
+
+// operator: Overload operator
+bool operator==(const MyClass& o) const { return x == o.x; }
+Exceptions
+cpp
+Copy
+Edit
+// try/catch/throw
+try { throw 5; }
+catch (int e) { cout << e; }
+
+// noexcept: No exceptions allowed
+void func() noexcept {}
+Casting & Type Info
+cpp
+Copy
+Edit
+const int x = 10;
+constexpr int size = 10;
+
+const_cast<int*>(&x);
+dynamic_cast<Derived*>(b);
+reinterpret_cast<char*>(p);
+static_cast<int>(3.14);
+
+cout << typeid(x).name();
+
+decltype(x) y = 5;
+
+typedef unsigned int uint;
+using uint = unsigned int;
+Namespaces & Modules
+cpp
+Copy
+Edit
+namespace ns { int x = 5; }
+using namespace ns;
+
+inline namespace v1 { int x = 1; }
+
+export module mymod;
+import mymod;
+Concurrency / Coroutines
+cpp
+Copy
+Edit
+co_await someTask();
+co_return value;
+co_yield value;
+Miscellaneous
+cpp
+Copy
+Edit
+asm("movl %eax, %ebx");
+static_assert(sizeof(int) == 4, "Int must be 4 bytes");
+volatile int flag;
+If you want, I can make this exact snippet list into a one-page PDF with syntax highlighting and keyword grouping so you can print or revise quickly before your interview.
+Do you want me to prepare that?
+
+
+
+
+
+
+
+
+You said:
+// class/struct
+class MyClass { public: int x; };
+struct MyStruct { int y; };
+
+// union
+union U { int i; float f; };
+
+// enum
+enum Color { Red, Green, Blue };
+
+// Access specifiers
+class C { private: int x; public: int y; };
+
+// virtual: For polymorphism
+class Base { public: virtual void show() {} };
+
+// override: Ensure overriding
+class Derived : public Base {
+  void show() override {}
+};
+
+// final: Prevent inheritance/override
+class FinalClass final {};
+
+// explicit: Prevent implicit conversion
+explicit MyClass(int x) {}
+
+// friend: Give access to private members
+friend void helper(MyClass&);
+
+// inline: Suggest inline expansion
+inline int add(int a, int b) { return a + b; }
+
+// this: Pointer to current object
+this->x = 5;
+
+// operator: Overload operator
+bool operator==(const MyClass& o) const { return x == o.x; }  explain a bit more
+
+
+ChatGPT said:
+Alright — let’s go line by line and unpack your snippet so you fully understand each OOP-related keyword in C++.
+I’ll explain what it does, why it’s used, and anything to watch out for in interviews.
+
+class / struct
+cpp
+Copy
+Edit
+class MyClass { public: int x; };
+struct MyStruct { int y; };
+class: Defines a blueprint for objects (methods + variables).
+
+Default access is private.
+
+struct: Similar to class but default access is public.
+
+In modern C++, struct and class are mostly interchangeable except for default access.
+
+union
+cpp
+Copy
+Edit
+union U { int i; float f; };
+A union stores different data types in the same memory space.
+
+Only one member is active at a time.
+
+Saves memory but you must track which member is currently valid.
+
+enum
+cpp
+Copy
+Edit
+enum Color { Red, Green, Blue };
+Creates a set of named integer constants.
+
+Useful for readability instead of magic numbers.
+
+In modern C++ (C++11+), prefer enum class for type safety.
+
+Access specifiers
+cpp
+Copy
+Edit
+class C { private: int x; public: int y; };
+private: Accessible only inside the class.
+
+public: Accessible from anywhere.
+
+protected (not shown): Accessible inside the class and its derived classes.
+
+virtual
+cpp
+Copy
+Edit
+class Base { public: virtual void show() {} };
+Marks a method as overridable in derived classes.
+
+Enables runtime polymorphism.
+
+Without virtual, function calls are resolved at compile-time.
+
+override
+cpp
+Copy
+Edit
+class Derived : public Base {
+  void show() override {}
+};
+Ensures that a function actually overrides a base class virtual function.
+
+Prevents subtle bugs (e.g., mismatched signatures).
+
+final
+cpp
+Copy
+Edit
+class FinalClass final {};
+Prevents further inheritance.
+
+Can also be applied to methods to prevent overriding.
+
+explicit
+cpp
+Copy
+Edit
+explicit MyClass(int x) {}
+Prevents the compiler from implicitly converting types when calling constructors.
+
+Example: Without explicit, MyClass obj = 5; would work automatically — with explicit, you must do MyClass obj(5);.
+
+friend
+cpp
+Copy
+Edit
+friend void helper(MyClass&);
+Allows another function or class to access private/protected members.
+
+Breaks encapsulation if overused, so use sparingly.
+
+inline
+cpp
+Copy
+Edit
+inline int add(int a, int b) { return a + b; }
+Suggests to the compiler: replace the function call with the function body to avoid call overhead.
+
+In modern C++, inline is also used to allow multiple definitions across translation units (especially for header files).
+
+this
+cpp
+Copy
+Edit
+this->x = 5;
+this is a pointer to the current object inside a member function.
+
+Needed when local variables shadow member variables, or when passing the current object.
+
+operator
+cpp
+Copy
+Edit
+bool operator==(const MyClass& o) const { return x == o.x; }
+Lets you overload operators (like +, ==, etc.) for your own classes.
+
+Makes custom types behave like built-in types in expressions.
+
 
